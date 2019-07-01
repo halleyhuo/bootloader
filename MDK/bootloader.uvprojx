@@ -527,6 +527,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\src\ymodem.c</FilePath>
             </File>
+            <File>
+              <FileName>crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\crc.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

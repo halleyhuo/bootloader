@@ -13,6 +13,8 @@
 #include "flash.h"
 #include "iap.h"
 #include "ymodem.h"
+#include "crc.h"
+
 #include <string.h>
 
 static uint32_t gJumpAddress;
@@ -61,7 +63,15 @@ IapRetVal IAP_UpdateApp(void)
     YmodemRetVal                ymodemRet;
     IapRetVal                   iapRetVal;
 
-    ymodemRet = YmodemReceive(APP_ADDR);
+    uint8_t                     *pFile;
+    uint32_t                    recvSize;
+    uint32_t                    crcVal;
+
+    ymodemRet = YmodemReceive(APP_ADDR, &recvSize);
+
+    /* CRC check */
+    pFile = (uint8_t *)APP_ADDR;
+    crcVal = crc32((const uint8_t *) pFile, recvSize);
 
     if(ymodemRet == YMODEM_OK)
         iapRetVal = IAP_OK;

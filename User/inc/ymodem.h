@@ -26,7 +26,7 @@ typedef int32_t                     YmodemRetVal;
 #define YMODEM_PARAM_ERR            -3      /* Parameters error */
 #define YMODEM_ABORT                -4      /* Remote abort */
 
-YmodemRetVal YmodemReceive(uint32_t addrSaveData);
+YmodemRetVal YmodemReceive(uint32_t addrSaveData, uint32_t * savedSize);
 
 #endif //__YMODEM_H__
 

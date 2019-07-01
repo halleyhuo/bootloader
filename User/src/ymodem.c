@@ -296,7 +296,7 @@ static YmodemRetVal ParseFileDescription(uint8_t * content, uint8_t contentLen, 
 	return YMODEM_OK;
 }
 
-YmodemRetVal YmodemReceive(uint32_t addrSaveData)
+YmodemRetVal YmodemReceive(uint32_t addrSaveData, uint32_t * savedSize)
 {
     ReceiveState            recvState;
     YmodemRetVal            recvRetVal;
@@ -401,6 +401,7 @@ YmodemRetVal YmodemReceive(uint32_t addrSaveData)
 
                             if(recveivedFileSize >= fileSize)
                             {
+                                *savedSize = recveivedFileSize;
                                 recvState = WAIT_EOT;
                             }
                         }
